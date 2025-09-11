@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostList from "../../components/PostList.astro";
+import { getCollection } from "astro:content";
+export async function getStaticPaths() {
+  // 获取所有文章
+  const writingPosts = await getCollection("writing");
+  const readingPosts = await getCollection("reading");
+
+  const allPosts = [...writingPosts, ...readingPosts].filter(
+    (post) => post.data.public,
+  );
+  
+  // 从所有文章中提取唯一标签，标签全部小写
+  const allTags = [
+    ...new Set(allPosts.map((post) => post.data.tags || []).flat()),
+  ].map((tag) => tag.trim().toLowerCase());
+
+  // 为每个标签生成路径和对应的文章列表
+  const result = Array.from(allTags).map((tag) => {
+    // 生成对应的文章列表
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags
+        // 匹配文章的时候，文章内的标签也要转化为小写，然后进行匹配
+        ?.map((postTag) => postTag.trim().toLowerCase())
+        .includes(tag),
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+
+  return result;
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+
+const filteredPosts = posts.map((post) => {
+  return {
+    title: post.data.title,
+    author: post.data.author as string,
+    url:
+      post.data.category === "clipping"
+        ? `/reading/${post.id}`
+        : `  /writing/${post.id}`,
+    datetime:
+      post.data.category === "clipping" ? post.data.saved : post.data.created,
+  };
+});
+---
+
+<BaseLayout title={tag}>
+  <PostList tag={tag} posts={filteredPosts} />
+</BaseLayout>

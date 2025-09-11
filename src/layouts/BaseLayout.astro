@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Footer from "../components/Footer.astro";
+import Navigation from "../components/navigation/Navigation.astro";
+interface Props {
+  title: string;
+  description?: string;
+  keywords?: string[];
+}
+
+const { title, description, keywords } = Astro.props as Props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width" name="viewport" />
+    <link href="/favicon.ico" rel="icon" type="image/ico" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Dkphhh's Murmurs"
+      href={new URL("rss.xml", Astro.site)}
+    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta content={Astro.generator} name="generator" />
+    <title>{title} | Dkphhh's Murmurs</title>
+    <meta
+      name="description"
+      content={(description || "") +
+        "Dkphhh的个人网站，是日记本，是收藏夹，也是笔记本和闲言碎语集子。Murmurs is Dkphhh's personal website: a diary, a bookmark collection, a notebook, and a miscellany of musings."}
+    />
+    <meta
+      name="keywords"
+      content={(keywords?.join(", ") || "") + "Dkphhh, Murmurs, 博客, 微博"}
+    />
+    <ClientRouter />
+  </head>
+  <body
+    class="flex-center h-full min-h-screen w-full bg-base-200 text-base-content"
+  >
+    <Navigation />
+
+    <main class="flex flex-1 flex-col items-center justify-center px-4 py-10">
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+---
+import {
+  formatDatetimeToText,
+  isThisDateTime,
+} from "../../utils/datetime-tools.ts";
+import { render } from "astro:content";
+
+type Props = {
+  post: PostEntry;
+};
+
+const { post } = Astro.props as Props;
+const datetime =
+  post.data.category === "clipping" ? post.data.saved : post.data.created;
+const url =
+  post.data.category === "origin"
+    ? `/writing/${post.id}`
+    : post.data.category === "clipping"
+      ? `/reading/${post.id}`
+      : `/lifelog/${post.id}`;
+const { title } = post.data;
+
+const { Content } = await render(post);
+---
+
+<div
+  class=" border-b-1 border-b-base-content/5 last:border-b-0 "
+>
+  <div class="card relative card-sm">
+    <div class="card-body cursor-pointer px-6 pt-8 pb-12">
+      <time class="text-sm">@{formatDatetimeToText(datetime)} </time>
+      {isThisDateTime(title) ? "" : <h2 class="card-title">{title}</h2>}
+      <article
+        class="prose prose-sm line-clamp-6 w-full text-justify prose-slate"
+      >
+        <Content />
+      </article>
+      <a href={url} class="absolute inset-0">
+        <span class="sr-only">阅读关于 {title} 的文章</span>
+      </a>
+    </div>
+  </div>
+</div>

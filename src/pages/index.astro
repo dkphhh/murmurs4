@@ -1,21 +1,36 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostEntry from "../components/PostEntry.astro";
+import { getCollection } from "astro:content";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// 筛选公开文章
 
-if (typeof Bun !== "undefined") {
-  console.log(`✅ Astro is running with Bun version: ${Bun.version}`);
-} else if (process.versions.node) {
-  console.log(
-    `✅ Astro is running with Node.js version: ${process.versions.node}`,
-  );
-} else {
-  console.log("Could not determine the runtime.");
-}
+const writingPosts = await getCollection("writing");
+
+const posts = writingPosts
+  .filter((post) => post.data.public)
+  .sort((a, b) => {
+    const aDT = a.data.created;
+
+    const bDT = b.data.created;
+
+    return bDT.valueOf() - aDT.valueOf();
+  })
+  .slice(0, 10);
 ---
 
-<Layout>
-  <Welcome />
-</Layout>
+<BaseLayout
+  title="Murmurs from Dkphhh | 微博客"
+  description="一些闲言碎语和生活记录，来自 Dkphhh。"
+  keywords={["murmurs", "dkphhh", "博客", "文章", "故事"]}
+>
+  <div class="flex-col-center h-full gap-8">
+    <div class="article-list-container">
+      {posts.map((post) => <PostEntry post={post} />)}
+    </div>
+    <a
+      class="btn w-full text-xl font-light tracking-wide italic btn-ghost"
+      href="/writing/2">Read More……</a
+    >
+  </div>
+</BaseLayout>

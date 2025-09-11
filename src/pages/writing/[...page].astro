@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostEntry from "../../components/PostEntry.astro";
+import { getCollection } from "astro:content";
+import type { GetStaticPaths, Page } from "astro";
+import Pagination from "../../components/Pagination.astro";
+
+// 筛选公开文章
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const writingPosts = await getCollection("writing");
+
+  const posts = writingPosts
+    .filter((post) => post.data.public)
+    .sort((a, b) => {
+      const aDT = a.data.created;
+      const bDT = b.data.created;
+
+      return bDT.valueOf() - aDT.valueOf();
+    });
+
+  return paginate(posts, {
+    pageSize: 10,
+  });
+};
+
+const { page } = Astro.props as { page: Page<PostEntry> };
+
+const allPosts = page.data;
+---
+
+<BaseLayout
+  title={`Page - ${page.currentPage} - Murmurs from Dkphhh`}
+  description="我的博客页面"
+  keywords={["博客", "文章", "更新", "故事"]}
+>
+  <div class="flex-col-center h-full gap-8">
+    <div class="article-list-container">
+      {allPosts.map((post) => <PostEntry post={post} />)}
+    </div>
+    <Pagination
+      currentPage={page.currentPage}
+      lastPage={page.lastPage}
+      pathName="writing"
+    />
+  </div>
+</BaseLayout>

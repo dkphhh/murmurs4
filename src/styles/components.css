@@ -1,0 +1,28 @@
+@layer components {
+  .button-mint {
+    @apply btn bg-mint-500 text-white hover:bg-mint-600;
+  }
+
+  .navigation-item {
+    @apply btn flex items-center justify-center btn-ghost;
+  }
+
+  .navigation-text {
+    @apply text-sm font-normal text-nowrap;
+  }
+
+  .navigation-text-button {
+    @apply btn text-sm font-normal text-nowrap btn-ghost;
+  }
+
+  .icon-style {
+    @apply h-6 w-6 fill-none stroke-current stroke-[1.5px] lg:h-8 lg:w-8;
+  }
+
+  .icon-style-sm {
+    @apply h-6 w-6 fill-none stroke-current stroke-[1.5px];
+  }
+  .article-list-container {
+    @apply flex h-full flex-col space-y-2 overflow-auto rounded-2xl bg-base-100 shadow-2xl;
+  }
+}

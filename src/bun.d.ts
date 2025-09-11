@@ -1,7 +1,7 @@
 declare interface BunYAML {
-  parse<T = any>(text: string): T;
+  parse<T = unknown>(text: string): T;
 }
 
-declare var Bun: {
+declare const Bun: {
   YAML: BunYAML;
 } & typeof import("bun");

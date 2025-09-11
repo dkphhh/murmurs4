@@ -1,0 +1,39 @@
+---
+import { formatDatetimeToText } from "../../utils/datetime-tools.ts";
+type Props = {
+  tag?: string;
+  posts: {
+    title: string;
+    datetime: Date;
+    author?: string;
+    url?: string;
+  }[];
+};
+
+const { tag, posts } = Astro.props as Props;
+---
+
+<ul class="list w-full rounded-box bg-base-100 shadow-md">
+  <li class="p-4 pb-2 text-sm tracking-wide opacity-60">
+    {tag ? `标签: ${tag}` : "所有文章"}
+  </li>
+
+  {
+    posts.map((post) => (
+      <li class="list-row">
+        <div class="flex flex-col gap-2">
+          <time class="text-sm text-gray-500">
+            {formatDatetimeToText(post.datetime)}
+          </time>
+          <div>{post.author || ""}</div>
+          <a
+            class="link text-base font-semibold link-primary uppercase opacity-60"
+            href={post.url || ""}
+          >
+            {post.title || ""}
+          </a>
+        </div>
+      </li>
+    ))
+  }
+</ul>

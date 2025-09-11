@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "Playground";
+---
+
+<BaseLayout
+  title={pageTitle}
+  description="关于我的信息"
+  keywords={["关于我", "信息", "个人"]}
+>
+  <div class="flex flex-col items-center justify-center space-y-8">
+    <h1 class="text-6xl font-extrabold text-mint-500">Tailwind Playground</h1>
+
+    <button class="button-mint">Mint Button</button>
+  </div>
+</BaseLayout>

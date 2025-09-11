@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Counter from "../components/counter/Counter.svelte";
+import TestComponent from "../components/test-svelte/TestComponent.svelte";
+const title = "Svelte Playground";
+---
+
+<BaseLayout title={title}>
+  <Counter client:load customMessage={title} />
+  <TestComponent client:load />
+</BaseLayout>

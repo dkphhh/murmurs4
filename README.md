@@ -1,46 +1,29 @@
-# Astro Starter Kit: Basics
+# Murmurs
 
-```sh
-bun create astro@latest -- --template basics
-```
+Murmurs,是我的个人微博，也可以理解成是一个公开的日记本。你可以前往 [dkphhh.me](https://dkphhh.me/)翻阅。也使我学习编程的试验场。
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+这是 Murmurs 的第 4 版,使用的开发框架是 Astro。
 
-## 🚀 Project Structure
+## 技术说明
 
-Inside of your Astro project, you'll see the following folders and files:
+Tech stack：Astro + Svelte + TailwindCSS + DaisyUI
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## TODO
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### TODO - 2.0
 
-## 🧞 Commands
+TODO：引入 daisyUI，按 threads 的 UI 样式 和 iA Writer 的色彩重置，注意设计移动端ui
 
-All commands are run from the root of the project, from a terminal:
+TODO: 单独的标签页按钮
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+TODO: 给所有的 <a></a> 加一个 hover 显示预览效果
 
-## 👀 Want to learn more?
+TODO: 自定义一个音频展示的样式，暂时的想法是做成一个圆角矩形的按钮，重点是原型的暂停/考试按钮，圆周用红色展示播放进度
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+TODO：增加一个草稿箱的功能，自动保存写到一半未发布的内容
+
+TODO：增加一个 rss 订阅，以及邮箱订阅的 按钮，rss
+
+### TODO: 3.0 规划
+
+TODO：前后端交互 api 化，把所有后端能力通过 api 开放出来

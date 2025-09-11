@@ -1,0 +1,10 @@
+@layer utilities {
+  .flex-center {
+    @apply flex flex-row items-center justify-center;
+  }
+
+  .flex-col-center {
+    @apply flex flex-col items-center justify-center;
+  }
+}
+
