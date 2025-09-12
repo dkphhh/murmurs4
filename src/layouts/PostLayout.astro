@@ -16,7 +16,7 @@ const publishedDate =
   description={frontmatter.description || ""}
   keywords={frontmatter.tags || []}
 >
-  <div class="prose prose-sm min-h-screen w-10/12 prose-slate lg:w-2/3 text-justify">
+  <div class="article-render min-h-screen w-10/12 lg:w-2/3">
     <h1>{frontmatter.title}</h1>
     <p>作者：{frontmatter.author}</p>
     <p>发布时间：{formatDatetimeToText(publishedDate)}</p>

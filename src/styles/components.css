@@ -25,4 +25,8 @@
   .article-list-container {
     @apply flex h-full flex-col space-y-2 overflow-auto rounded-2xl bg-base-100 shadow-2xl;
   }
+
+  .article-render {
+    @apply prose prose-sm text-justify  tracking-wide prose-slate;
+  }
 }

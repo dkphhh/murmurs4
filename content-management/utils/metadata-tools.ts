@@ -1,6 +1,4 @@
-// import { OPEN_ROUTER_API_KEY } from "astro:env/server";
-const OPEN_ROUTER_API_KEY =
-  "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";
+import { OPEN_ROUTER_API_KEY } from "astro:env/server";
 
 /**
  * 预设的 tag

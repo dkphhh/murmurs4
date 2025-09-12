@@ -27,10 +27,12 @@ const posts = writingPosts
   <div class="flex-col-center h-full gap-8">
     <div class="article-list-container">
       {posts.map((post) => <PostEntry post={post} />)}
+      <div class="flex-center w-full pt-2 pb-4">
+        <a
+          class="btn w-fit px-4 py-8 text-xl font-light tracking-wide italic btn-ghost"
+          href="/writing/2">Read More……</a
+        >
+      </div>
     </div>
-    <a
-      class="btn w-full text-xl font-light tracking-wide italic btn-ghost"
-      href="/writing/2">Read More……</a
-    >
   </div>
 </BaseLayout>
