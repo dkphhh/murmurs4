@@ -1,0 +1,21 @@
+---
+import { formatDatetimeToText } from "../../utils/datetime-tools";
+
+interface Props {
+  frontmatter: PostFrontmatter;
+}
+
+const { frontmatter } = Astro.props as Props;
+---
+
+<span class="text-sm"
+  >@<time
+    >{
+      frontmatter.category === "clipping" && frontmatter.published
+        ? formatDatetimeToText(frontmatter.published)
+        : frontmatter.category === "clipping"
+          ? formatDatetimeToText(frontmatter.saved)
+          : formatDatetimeToText(frontmatter.created)
+    }</time
+  >
+</span>

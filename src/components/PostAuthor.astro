@@ -1,0 +1,28 @@
+---
+interface Props {
+  frontmatter: PostFrontmatter;
+}
+
+const { frontmatter } = Astro.props as Props;
+---
+
+<span class="text-sm">
+  {
+    frontmatter.category === "clipping" && frontmatter.source ? (
+      <a
+        class="link"
+        href={frontmatter.source.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {frontmatter.author || "来源"}
+      </a>
+    ) : frontmatter.author?.toLocaleLowerCase() === "dkphhh" ? (
+      <a class="link" href="/">
+        Dkphhh
+      </a>
+    ) : (
+      frontmatter.author
+    )
+  }</span
+>

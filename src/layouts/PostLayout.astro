@@ -1,14 +1,11 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import { formatDatetimeToText } from "../../utils/datetime-tools";
+import PostMetadata from "../components/PostMetadata.astro";
 
 interface Props {
   frontmatter: PostFrontmatter;
 }
 const { frontmatter } = Astro.props as Props;
-
-const publishedDate =
-  frontmatter.category === "clipping" ? frontmatter.saved : frontmatter.created;
 ---
 
 <BaseLayout
@@ -16,11 +13,11 @@ const publishedDate =
   description={frontmatter.description || ""}
   keywords={frontmatter.tags || []}
 >
-  <div class="article-render min-h-screen w-10/12 lg:w-2/3">
-    <h1>{frontmatter.title}</h1>
-    <p>作者：{frontmatter.author}</p>
-    <p>发布时间：{formatDatetimeToText(publishedDate)}</p>
-    <article>
+  <div
+    class="flex-col-center min-h-120 w-5/6 max-w-200 min-w-100 rounded-4xl bg-base-100 p-12 shadow-2xl lg:w-2/3 lg:p-16"
+  >
+    <PostMetadata frontmatter={frontmatter} />
+    <article class="article-render">
       <slot />
     </article>
   </div>

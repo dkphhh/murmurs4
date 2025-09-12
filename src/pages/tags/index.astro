@@ -1,28 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TagList from "../../components/TagList.astro";
-import { getCollection } from "astro:content";
-import PostList from "../../components/PostList.astro";
-
-const writingPosts = await getCollection("writing");
-const readingPosts = await getCollection("reading");
-
-const allPosts = [...writingPosts, ...readingPosts].filter(
-  (post) => post.data.public,
-);
-
-const posts = allPosts.map((post) => {
-  return {
-    title: post.data.title,
-    author: post.data.author,
-    url:
-      post.data.category === "origin"
-        ? `/writing/${post.id}`
-        : `/reading/${post.id}`,
-    datetime:
-      post.data.category === "origin" ? post.data.created : post.data.saved,
-  };
-});
 ---
 
 <BaseLayout
@@ -31,11 +9,9 @@ const posts = allPosts.map((post) => {
   keywords={["标签", "分类", "整理", "归档"]}
 >
   <div
-    class="flex w-5/6 flex-col items-center justify-center space-y-4 lg:w-2/3"
+    class="flex w-5/6 flex-col items-center justify-center gap-4 rounded-2xl bg-base-100 px-4 py-8 shadow-2xl lg:w-2/3"
   >
-    <h1 class="text-2xl font-bold">标签</h1>
-    <p>这里是我的标签页面，展示了我博客中的各种标签。</p>
+    <h1 class="text-2xl font-bold">Tags</h1>
     <TagList />
-    <PostList posts={posts} />
   </div>
 </BaseLayout>

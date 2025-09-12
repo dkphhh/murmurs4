@@ -1,0 +1,28 @@
+---
+import { isThisDateTime } from "../../utils/datetime-tools";
+import PostAuthor from "./PostAuthor.astro";
+import PostDatetime from "./PostDatetime.astro";
+interface Props {
+  frontmatter: PostFrontmatter;
+}
+
+const { frontmatter } = Astro.props as Props;
+---
+
+<div class="flex-col-center w-full gap-4">
+  <!-- 标题 -->
+  {
+    isThisDateTime(frontmatter.title) ? null : (
+      <h1 class="flex-center w-full text-center text-lg font-medium text-pretty lg:text-2xl">
+        {frontmatter.title}
+      </h1>
+    )
+  }
+
+  <div class="text-sm">
+    <!-- 作者 -->
+    <PostAuthor frontmatter={frontmatter} />
+    <!-- 时间 -->
+    <PostDatetime frontmatter={frontmatter} />
+  </div>
+</div>

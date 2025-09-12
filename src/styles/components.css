@@ -27,6 +27,6 @@
   }
 
   .article-render {
-    @apply prose prose-sm text-justify  tracking-wide prose-slate;
+    @apply prose prose-sm w-full text-justify tracking-wide text-pretty prose-slate lg:prose-base;
   }
 }

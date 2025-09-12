@@ -1,22 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostEntry from "../components/PostEntry.astro";
-import { getCollection } from "astro:content";
+import { getCategoryPosts } from "../../utils/process-posts.ts";
 
 // 筛选公开文章
 
-const writingPosts = await getCollection("writing");
-
-const posts = writingPosts
-  .filter((post) => post.data.public)
-  .sort((a, b) => {
-    const aDT = a.data.created;
-
-    const bDT = b.data.created;
-
-    return bDT.valueOf() - aDT.valueOf();
-  })
-  .slice(0, 10);
+const writingPosts = await getCategoryPosts("writing");
+const posts = writingPosts.slice(0, 10);
 ---
 
 <BaseLayout

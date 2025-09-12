@@ -11,10 +11,7 @@ Tech stack：Astro + Svelte + TailwindCSS + DaisyUI
 ## TODO
 
 TODO：增加一个搜索功能
-TODO：完善标签页的设计
-TODO：完善文章内容页的设计
 TODO：引入 IA Writer 的字体
-TODO: 研究 Tailwind CSS 的 typography 插件，看看能不能自定义
 
 ### TODO - 2.0
 

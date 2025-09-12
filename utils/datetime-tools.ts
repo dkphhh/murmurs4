@@ -42,6 +42,28 @@ export function formatDatetimeToText(d: Date) {
   return `${yyyy}-${MM}-${dd} ${hh}:${mm}:${ss}`;
 }
 
+
+/**
+ * 判断给定字符串是否能被解析为有效的日期/时间。
+ *
+ * 函数通过 `new Date(s)` 创建一个 Date 对象，并检查其时间戳是否为 NaN 来确定输入字符串是否表示有效的日期/时间。
+ *
+ * @param s - 要检测的字符串。
+ * @returns 如果字符串可以解析为有效的日期/时间则返回 `true`，否则返回 `false`。
+ *
+ * @remarks
+ * - 解析依赖于 JavaScript 引擎的 Date 解析规则，结果可能随运行环境（实现、时区、语言设置）而异。
+ * - 对于不标准或模糊的日期字符串（如某些本地化格式或部分缺失的日期信息），不同环境可能给出不同结果。
+ * - 空字符串、纯文本或明显无效的格式将返回 `false`。
+ *
+ * @example
+ * // 返回 true
+ * isThisDateTime('2020-01-01T00:00:00Z');
+ *
+ * @example
+ * // 返回 false
+ * isThisDateTime('not a date');
+ */
 export function isThisDateTime(s: string): boolean {
   try {
     const d = new Date(s);

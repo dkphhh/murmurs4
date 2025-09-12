@@ -1,8 +1,7 @@
+import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField } from "astro/config";
-
-import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,6 +11,10 @@ export default defineConfig({
       OPEN_ROUTER_API_KEY: envField.string({
         context: "server",
         access: "secret",
+      }),
+      MURMURS_PATH: envField.string({
+        context: "server",
+        access: "public",
       }),
     },
   },
