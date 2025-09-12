@@ -12,6 +12,13 @@ const TARGET_DIR =
 // 处理的文件，这里处理目录内所有的 markdown 文件
 const glob = new Bun.Glob("**/*.md");
 
+// ------------ 任务配置 --------------
+
+async function runTasks(filepath: string) {
+  await dailyTasksRunner(filepath);
+  // 在这里添加需要执行的任务
+}
+
 // -------- 任务执行区域 -------
 async function main() {
   const filePaths = glob.scan(TARGET_DIR);
@@ -21,7 +28,7 @@ async function main() {
     const fullPath = path.join(TARGET_DIR, filePath);
     tasks.push(
       limit(() =>
-        dailyTasksRunner(fullPath).catch((error) => {
+        runTasks(fullPath).catch((error) => {
           throw error(`❌ 处理文件 ${fullPath} 时出现错误:`, error);
         }),
       ),
