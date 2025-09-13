@@ -13,9 +13,7 @@ const { frontmatter } = Astro.props as Props;
   description={frontmatter.description || ""}
   keywords={frontmatter.tags || []}
 >
-  <div
-    class="flex-col-center min-h-120 w-5/6 max-w-200 min-w-100 rounded-4xl bg-base-100 p-12 shadow-2xl lg:w-2/3 lg:p-16"
-  >
+  <div class="article-container">
     <PostMetadata frontmatter={frontmatter} />
     <article class="article-render">
       <slot />

@@ -26,6 +26,10 @@
     @apply flex h-full flex-col space-y-2 overflow-auto rounded-2xl bg-base-100 shadow-2xl;
   }
 
+  .article-container {
+    @apply flex min-h-120 w-5/6 max-w-200 min-w-100 flex-col items-center justify-center rounded-4xl bg-base-100 p-12 shadow-2xl lg:w-2/3 lg:p-16;
+  }
+
   .article-render {
     @apply prose prose-sm w-full text-justify tracking-wide text-pretty prose-slate lg:prose-base;
   }
