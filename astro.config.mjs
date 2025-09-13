@@ -1,11 +1,13 @@
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwindcss from "@tailwindcss/vite";
+import pagefind from "astro-pagefind";
 import { defineConfig, envField } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://dkphhh.me",
+
   env: {
     schema: {
       OPEN_ROUTER_API_KEY: envField.string({
@@ -22,7 +24,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [svelte(), sitemap()],
+  integrations: [svelte(), sitemap(), pagefind({
+    
+  })],
   image: {
     layout: "constrained",
     responsiveStyles: true,

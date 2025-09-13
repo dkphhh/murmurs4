@@ -26,7 +26,7 @@ const allPosts = page.data;
   description="Dkphhh 的生活记录和部分独立页面"
   keywords={["收藏夹", "文章", "更新", "故事"]}
 >
-  <div class="flex-col-center h-full gap-8">
+  <div class="flex-col-center h-full gap-8" data-pagefind-ignore="all">
     <PageTitle category="lifelog" title="Other Pages" />
     <div class="article-list-container">
       {allPosts.map((post) => <PostEntry post={post} />)}

@@ -1,0 +1,16 @@
+---
+import SearchBox from "astro-pagefind/components/Search";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Search" description="Search Page">
+  <div class="article-container">
+    <SearchBox
+      id="search"
+      className="pagefind-ui"
+      uiOptions={{ showImages: false, pageSize: 10 }}
+    />
+  </div>
+</BaseLayout>
+
+

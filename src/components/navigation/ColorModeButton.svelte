@@ -53,6 +53,7 @@
 
 <label
   class="navigation-item swap swap-rotate lg:absolute lg:bottom-8"
+  aria-label="亮/暗色模式切换"
   title="亮/暗色模式"
 >
   <!-- this hidden checkbox controls the state -->

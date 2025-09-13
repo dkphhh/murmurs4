@@ -44,7 +44,7 @@ const allPosts = page.data;
   description="Dkphhh 的文章收藏夹"
   keywords={["收藏夹", "文章", "更新", "故事"]}
 >
-  <div class="flex-col-center h-full gap-8">
+  <div class="flex-col-center h-full gap-8" data-pagefind-ignore="all">
     <h1 class="text-2xl font-bold">Tag: {tag}</h1>
     <div class="article-list-container">
       {allPosts.map((post) => <PostEntry post={post} />)}

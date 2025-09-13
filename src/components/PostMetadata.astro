@@ -5,15 +5,29 @@ import PostDatetime from "./PostDatetime.astro";
 interface Props {
   frontmatter: PostFrontmatter;
 }
-
+import { formatDatetimeToText } from "../../utils/datetime-tools";
 const { frontmatter } = Astro.props as Props;
+
+const datetime =
+  frontmatter.category === "clipping" && frontmatter.published
+    ? frontmatter.published
+    : frontmatter.category === "clipping"
+      ? frontmatter.saved
+      : frontmatter.created;
 ---
 
 <div class="flex-col-center w-full gap-4">
   <!-- 标题 -->
   {
-    isThisDateTime(frontmatter.title) ? null : (
-      <h1 class="flex-center w-full text-center text-lg font-medium text-pretty lg:text-2xl">
+    isThisDateTime(frontmatter.title) ? (
+      <h1 hidden data-pagefind-meta="title">
+        {formatDatetimeToText(datetime)}
+      </h1>
+    ) : (
+      <h1
+        data-pagefind-meta="title"
+        class="flex-center w-full text-center text-lg font-medium text-pretty lg:text-2xl"
+      >
         {frontmatter.title}
       </h1>
     )

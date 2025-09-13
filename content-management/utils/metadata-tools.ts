@@ -1,4 +1,4 @@
-import { OPEN_ROUTER_API_KEY } from "astro:env/server";
+const OPEN_ROUTER_API_KEY = Bun.env.OPEN_ROUTER_API_KEY;
 
 /**
  * 预设的 tag

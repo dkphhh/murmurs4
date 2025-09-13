@@ -14,7 +14,7 @@ const posts = writingPosts.slice(0, 10);
   description="一些闲言碎语和生活记录，来自 Dkphhh。"
   keywords={["murmurs", "dkphhh", "博客", "文章", "故事"]}
 >
-  <div class="flex-col-center h-full gap-8">
+  <div class="flex-col-center h-full gap-8" data-pagefind-ignore="all">
     <div class="article-list-container">
       {posts.map((post) => <PostEntry post={post} />)}
       <div class="flex-center w-full pt-2 pb-4">

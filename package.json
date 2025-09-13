@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "predev": "bun content-management/index.ts",
     "dev": "bunx --bun astro dev",
+    "prebuild": "bun content-management/index.ts",
     "build": "bunx --bun astro build",
     "preview": "bunx --bun astro preview",
     "astro": "bunx --bun astro"
@@ -24,6 +26,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.3.0",
     "@typescript-eslint/parser": "^8.41.0",
+    "astro-pagefind": "^1.8.5",
     "daisyui": "^5.0.54",
     "dayjs": "^1.11.18",
     "eslint": "^9.34.0",

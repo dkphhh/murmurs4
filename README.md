@@ -10,24 +10,14 @@ Tech stack：Astro + Svelte + TailwindCSS + DaisyUI
 
 ## TODO
 
-TODO：增加一个搜索功能
-
-TODO：引入 IA Writer 的字体
+TODO：继续研究 pagefind 的用法，尤其是搜索结果的展示
 
 ### TODO - 2.0
-
-TODO：引入 daisyUI，按 threads 的 UI 样式 和 iA Writer 的色彩重置，注意设计移动端ui
-
-TODO: 单独的标签页按钮
 
 TODO: 给所有的 <a></a> 加一个 hover 显示预览效果
 
 TODO: 自定义一个音频展示的样式，暂时的想法是做成一个圆角矩形的按钮，重点是原型的暂停/考试按钮，圆周用红色展示播放进度
 
-TODO：增加一个草稿箱的功能，自动保存写到一半未发布的内容
 
-TODO：增加一个 rss 订阅，以及邮箱订阅的 按钮，rss
 
-### TODO: 3.0 规划
 
-TODO：前后端交互 api 化，把所有后端能力通过 api 开放出来

@@ -24,7 +24,7 @@ const allPosts = page.data;
   description="我的博客页面"
   keywords={["博客", "文章", "更新", "故事"]}
 >
-  <div class="flex-col-center h-full gap-8">
+  <div class="flex-col-center h-full gap-8" data-pagefind-ignore="all">
     <PageTitle category="writing" title="All Murmurs" />
     <div class="article-list-container">
       {allPosts.map((post) => <PostEntry post={post} />)}
