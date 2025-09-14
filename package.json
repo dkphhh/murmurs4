@@ -6,7 +6,7 @@
     "predev": "bun content-management/index.ts",
     "dev": "bunx --bun astro dev",
     "prebuild": "bun content-management/index.ts",
-    "build": "bunx --bun astro build",
+    "build": "bunx --bun astro build && cp -r dist/pagefind public/ ",
     "preview": "bunx --bun astro preview",
     "astro": "bunx --bun astro"
   },

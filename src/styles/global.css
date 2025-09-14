@@ -79,3 +79,17 @@
   --color-mint-500: oklch(82.508% 0.14048 175.9);
   --color-mint-600: oklch(72.508% 0.14048 175.9);
 }
+
+:root {
+  --pagefind-ui-scale: 1;
+  --pagefind-ui-primary: var(--color-primary);
+  --pagefind-ui-text: var(--color-base-content);
+  --pagefind-ui-background: var(--color-base-100);
+  --pagefind-ui-border: var(--color-base-300);
+  --pagefind-ui-tag: var(--color-base-300);
+  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border-radius: var(--radius-box);
+  --pagefind-ui-image-border-radius: var(--radius-box);
+  --pagefind-ui-image-box-ratio: 3 / 2;
+  --pagefind-ui-font: "iA Writer Mono V";
+}

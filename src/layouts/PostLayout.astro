@@ -15,7 +15,7 @@ const { frontmatter } = Astro.props as Props;
 >
   <div class="article-container">
     <PostMetadata frontmatter={frontmatter} />
-    <article class="article-render">
+    <article class="article-render" data-pagefind-body>
       <slot />
     </article>
   </div>
