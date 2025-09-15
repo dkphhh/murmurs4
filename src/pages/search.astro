@@ -4,12 +4,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Search" description="Search Page">
-  <div
-    class="flex-center min-h-100 w-11/12 rounded-4xl bg-base-100 px-8 py-16 shadow-2xl lg:w-1/2"
-  >
+  <div class="flex-center min-h-120 w-9/10 rounded-4xl p-8 lg:w-1/2">
     <SearchBox
       id="search"
-      className="pagefind-ui w-full"
+      className="pagefind-ui"
       uiOptions={{
         showImages: false,
         pageSize: 10,
