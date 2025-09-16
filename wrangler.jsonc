@@ -9,11 +9,11 @@
     "workers_dev": false,
     "routes": [
         {
-            "pattern": "dkphhh.com",
+            "pattern": "dkphhh.me",
             "custom_domain": true
         },
         {
-            "pattern": "www.dkphhh.com",
+            "pattern": "www.dkphhh.me",
             "custom_domain": true
         }
     ],
