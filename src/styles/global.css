@@ -69,7 +69,7 @@
   --size-field: 0.28125rem;
   --border: 1px;
   --depth: 1;
-  --noise: 1;
+  --noise: 0;
 }
 
 @plugin "daisyui/theme" {
@@ -104,7 +104,7 @@
   --size-field: 0.28125rem;
   --border: 1px;
   --depth: 1;
-  --noise: 1;
+  --noise: 0;
 }
 
 @theme {
@@ -125,4 +125,9 @@
   --pagefind-ui-image-border-radius: var(--radius-box);
   --pagefind-ui-image-box-ratio: 3 / 2;
   --pagefind-ui-font: "iA Writer Mono V";
+}
+
+.glass {
+  --glass-reflect-opacity: 0;
+  --glass-reflect-degree: 0;
 }

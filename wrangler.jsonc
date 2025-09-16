@@ -12,10 +12,7 @@
             "pattern": "dkphhh.me",
             "custom_domain": true
         },
-        {
-            "pattern": "www.dkphhh.me",
-            "custom_domain": true
-        }
+       
     ],
     "assets": {
         "binding": "ASSETS",
