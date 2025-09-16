@@ -1,18 +1,14 @@
 @layer components {
-  .button-mint {
-    @apply btn bg-mint-500 hover:bg-mint-600 text-white;
-  }
-
   .navigation-item {
-    @apply btn btn-ghost flex items-center justify-center;
+    @apply btn flex items-center justify-center btn-ghost;
   }
 
   .navigation-text {
-    @apply text-nowrap text-sm font-normal;
+    @apply text-sm font-normal text-nowrap;
   }
 
   .navigation-text-button {
-    @apply btn btn-ghost text-nowrap text-sm font-normal;
+    @apply btn text-sm font-normal text-nowrap btn-ghost;
   }
 
   .icon-style {
@@ -23,19 +19,19 @@
     @apply h-6 w-6 fill-none stroke-current stroke-[1.5px];
   }
   .article-list-container {
-    @apply max-w-100 bg-base-100 md:max-w-160 lg:max-w-180 flex h-full flex-col items-center justify-center space-y-2 overflow-auto rounded-2xl py-4 shadow-2xl;
+    @apply flex h-full max-w-100 flex-col items-center justify-center space-y-2 overflow-auto rounded-2xl bg-base-100 py-4 shadow-2xl md:max-w-160 lg:max-w-180;
   }
 
   .article-container {
-    @apply min-h-120 rounded-4xl bg-base-100 flex w-5/6 flex-col items-center justify-center px-2 py-12 shadow-2xl lg:w-2/3 lg:p-16;
+    @apply flex min-h-120 w-5/6 flex-col items-center justify-center rounded-4xl bg-base-100 px-2 py-12 shadow-2xl lg:w-2/3 lg:p-16;
   }
 
   .article-render {
-    @apply prose prose-sm prose-slate lg:prose-base text-pretty p-1 text-justify tracking-wide;
+    @apply prose prose-sm p-1 text-justify tracking-wide text-pretty prose-slate lg:prose-base;
   }
 
   /* Pagefind UI 完全自定义样式 */
   .pagefind-ui {
-    @apply prose prose-sm prose-slate lg:prose-base w-full max-w-full text-pretty text-justify tracking-wide;
+    @apply prose prose-sm w-full max-w-full text-justify font-iA-Mono tracking-wide text-pretty prose-slate lg:prose-base;
   }
 }

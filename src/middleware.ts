@@ -1,20 +1,37 @@
 // filepath: src/middleware.ts
-import { defineMiddleware } from "astro:middleware";
+import type { MiddlewareHandler } from "astro";
+import { sequence } from "astro:middleware";
 
-/**
- * Astro 中间件，用于处理请求和响应
- * @see https://docs.astro.build/zh-cn/guides/middleware/
- */
-export const onRequest = defineMiddleware(async (context, next) => {
-  const { pathname } = context.url;
-  const { params, redirect } = context;
 
-  // --- 检查路径是否为 /category1/category2/slug 模式---
+const redirectSpaceToDash: MiddlewareHandler = async (
+  { url, redirect },
+  next,
+) => {
+  const { pathname } = url;
+  const decodedPath = decodeURIComponent(pathname);
+
+  // --- 检查解码后的路径是否包含空格 ---
+  if (decodedPath.includes(" ")) {
+    // 将空格替换为短横线
+    const newPath = decodedPath.replace(/ /g, "-");
+    return redirect(newPath, 301); // 301 永久重定向
+  }
+
+  return await next();
+};
+
+const redirectDuplicateCategory: MiddlewareHandler = async (
+  { url, redirect },
+  next,
+) => {
+  const { pathname } = url;
+
   const categories = ["reading", "writing", "lifelog"];
+
   // 将路径分割成数组，并过滤掉空字符串，例如 "/writing/reading/slug" -> ["writing", "reading", "slug"]
   const pathSegments = pathname.split("/").filter(Boolean);
 
-  // 检查路径是否至少包含两个部分，且前两个部分都是分类目录
+  // --- 检查路径是否为 /category1/category2/slug 模式---
   if (
     pathSegments.length >= 2 &&
     categories.includes(pathSegments[0]) &&
@@ -37,24 +54,34 @@ export const onRequest = defineMiddleware(async (context, next) => {
     const newPath = `/${pathSegments[0]}/${pathSegments[2]}`;
     return redirect(newPath, 301); // 301 永久重定向
   }
+  return await next();
+};
 
-  // --- 检查是否是标签页路由，并且 tag 参数与它的小写版本不符---
-  if (
-    pathname.startsWith("/tags/") &&
-    params.tag &&
-    params.tag !== params.tag.toLowerCase()
-  ) {
-    // 如果 tag 包含大写字母，则重定向到全小写的 URL
-    // 例如：/tags/AI -> /tags/ai
-    const lowercasePath = `/tags/${params.tag.toLowerCase()}`;
-    return redirect(lowercasePath, 301); // 301 表示永久重定向
+const redirectPathToLowercase: MiddlewareHandler = async (
+  { url, redirect },
+  next,
+) => {
+  const { pathname } = url;
+  const decodedPath = decodeURIComponent(pathname);
+
+  // --- 检查路径是否包含大写字母 ---
+  if (decodedPath !== decodedPath.toLowerCase()) {
+    // 如果路径包含大写字母，则重定向到全小写的 URL
+    // 例如：/reading/As-We-May-Think -> /reading/as-we-may-think
+      const newPath = encodeURI(decodedPath.toLowerCase());
+    return redirect(newPath, 301); // 301 表示永久重定向
   }
+  return await next();
+};
 
-  // --- about页面重定向 ---
-  if (pathname === "/about") {
-    return redirect("/lifelog/about-me", 301);
-  }
 
-  // 如果不匹配，继续处理下一个中间件或页面
-  return next();
-});
+
+/**
+ * Astro 中间件，用于处理请求和响应
+ * @see https://docs.astro.build/zh-cn/guides/middleware/
+ */
+export const onRequest = sequence(
+  redirectPathToLowercase,
+  redirectSpaceToDash,
+  redirectDuplicateCategory,
+);

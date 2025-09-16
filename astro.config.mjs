@@ -1,3 +1,4 @@
+import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwindcss from "@tailwindcss/vite";
@@ -7,7 +8,12 @@ import { defineConfig, envField } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   site: "https://dkphhh.me",
-
+  redirects: {
+    "/about": {
+      status: 301,
+      destination: "/lifelog/about-me",
+    },
+  },
   env: {
     schema: {
       OPEN_ROUTER_API_KEY: envField.string({
@@ -20,13 +26,16 @@ export default defineConfig({
       }),
     },
   },
+
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      minify: false,
+    },
   },
 
-  integrations: [svelte(), sitemap(), pagefind({
-    
-  })],
+  integrations: [svelte(), sitemap(), pagefind({})],
+
   image: {
     layout: "constrained",
     responsiveStyles: true,
@@ -37,4 +46,8 @@ export default defineConfig({
       },
     ],
   },
+
+  adapter: cloudflare({
+    imageService: "compile",
+  }),
 });

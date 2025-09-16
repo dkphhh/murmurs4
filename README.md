@@ -10,8 +10,7 @@ Tech stack：Astro + Svelte + TailwindCSS + DaisyUI
 
 ## TODO
 
-TODO: 写一个 404 页面
-TODO: 黑夜模式主题
+TODO: 解决 middleware 失效的问题
 
 ### TODO - 2.0
 

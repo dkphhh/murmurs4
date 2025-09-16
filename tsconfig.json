@@ -6,13 +6,12 @@
     "src/**/*",
     "src/app.d.ts"
   ],
-  "exclude": [
-    "dist",
-  ],
+  "exclude": [],
   "compilerOptions": {
     "types": [
       "astro/client",
       "bun",
+      "@cloudflare/workers-types"
     ]
   }
 }
