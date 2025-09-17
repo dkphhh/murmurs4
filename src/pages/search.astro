@@ -4,11 +4,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Search" description="Search Page">
-
   <div class="flex-center min-h-120 w-9/10 rounded-4xl p-8 lg:w-1/2">
     <SearchBox
       id="search"
-      className="pagefind-ui"
+      className="pagefind-ui w-full max-w-full"
       uiOptions={{
         showImages: false,
         pageSize: 10,
@@ -20,3 +19,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     />
   </div>
 </BaseLayout>
+
+<style is:inline>
+  /* 必须要加 is:inline  否则样式也会延迟生效*/
+  #search {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: var(--color-base-content);
+    --pagefind-ui-text: var(--color-base-content);
+    --pagefind-ui-background: var(--color-base-100);
+    --pagefind-ui-border: var(--color-base-300);
+    --pagefind-ui-tag: var(--color-base-300);
+    --pagefind-ui-border-width: 2px;
+    --pagefind-ui-border-radius: var(--radius-box);
+    --pagefind-ui-image-border-radius: var(--radius-box);
+    --pagefind-ui-image-box-ratio: 3 / 2;
+    --pagefind-ui-font: "iA Writer Mono V";
+  }
+</style>

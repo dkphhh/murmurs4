@@ -11,7 +11,6 @@ Tech stack：Astro + Svelte + TailwindCSS + DaisyUI
 ## TODO
 
 TODO: 解决 middleware 失效的问题
-TODO: 解决 pagefind 首次加载 css 失效的问题
 
 ### TODO - 2.0
 
