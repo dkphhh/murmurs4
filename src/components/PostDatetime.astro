@@ -8,14 +8,16 @@ interface Props {
 const { frontmatter } = Astro.props as Props;
 ---
 
-<span class="text-sm"
-  >@<time
-    >{
-      frontmatter.category === "clipping" && frontmatter.published
-        ? formatDatetimeToText(frontmatter.published)
-        : frontmatter.category === "clipping"
-          ? formatDatetimeToText(frontmatter.saved)
-          : formatDatetimeToText(frontmatter.created)
-    }</time
-  >
+<span class="text-sm">
+  {
+    frontmatter.category === "clipping" && frontmatter.published ? (<span>Published@ </span>
+      <time>{formatDatetimeToText(frontmatter.published)}</time>
+    ) : frontmatter.category === "clipping" ? (
+    <span>Saved@ </span>
+    <time>{formatDatetimeToText(frontmatter.saved)}</time>
+    ) : (
+      <span>Created@ </span>
+      <time>{formatDatetimeToText(frontmatter.created)}</time>
+    )
+  }
 </span>

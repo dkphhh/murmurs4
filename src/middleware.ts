@@ -1,19 +1,17 @@
-// filepath: src/middleware.ts
 import type { MiddlewareHandler } from "astro";
 import { sequence } from "astro:middleware";
 
-
-const redirectSpaceToDash: MiddlewareHandler = async (
-  { url, redirect },
-  next,
-) => {
+const normalizePath: MiddlewareHandler = async ({ url, redirect }, next) => {
   const { pathname } = url;
   const decodedPath = decodeURIComponent(pathname);
 
-  // --- 检查解码后的路径是否包含空格 ---
-  if (decodedPath.includes(" ")) {
-    // 将空格替换为短横线
-    const newPath = decodedPath.replace(/ /g, "-");
+  // 同时转换为小写并替换空格
+  const normalizedPath = decodedPath.toLowerCase().replace(/ /g, "-");
+
+  // 仅当路径确实发生变化时才重定向
+  if (decodedPath !== normalizedPath) {
+    // 对最终生成的路径进行编码，以防包含特殊字符
+    const newPath = encodeURI(normalizedPath);
     return redirect(newPath, 301); // 301 永久重定向
   }
 
@@ -57,31 +55,8 @@ const redirectDuplicateCategory: MiddlewareHandler = async (
   return await next();
 };
 
-const redirectPathToLowercase: MiddlewareHandler = async (
-  { url, redirect },
-  next,
-) => {
-  const { pathname } = url;
-  const decodedPath = decodeURIComponent(pathname);
-
-  // --- 检查路径是否包含大写字母 ---
-  if (decodedPath !== decodedPath.toLowerCase()) {
-    // 如果路径包含大写字母，则重定向到全小写的 URL
-    // 例如：/reading/As-We-May-Think -> /reading/as-we-may-think
-      const newPath = encodeURI(decodedPath.toLowerCase());
-    return redirect(newPath, 301); // 301 表示永久重定向
-  }
-  return await next();
-};
-
-
-
 /**
  * Astro 中间件，用于处理请求和响应
  * @see https://docs.astro.build/zh-cn/guides/middleware/
  */
-export const onRequest = sequence(
-  redirectPathToLowercase,
-  redirectSpaceToDash,
-  redirectDuplicateCategory,
-);
+export const onRequest = sequence(redirectDuplicateCategory, normalizePath);

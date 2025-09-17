@@ -8,6 +8,7 @@ import { defineConfig, envField } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   site: "https://dkphhh.me",
+
   redirects: {
     "/about": {
       status: 301,
@@ -45,6 +46,6 @@ export default defineConfig({
   },
 
   adapter: cloudflare({
-    imageService: "compile",
+    imageService: "cloudflare",
   }),
 });
