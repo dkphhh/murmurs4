@@ -30,8 +30,5 @@
     @apply prose prose-sm p-1 text-justify tracking-wide text-pretty prose-slate lg:prose-base;
   }
 
-  /* Pagefind UI 完全自定义样式 */
-  /* .pagefind-ui {
-    @apply prose prose-sm w-full max-w-full text-justify tracking-wide text-pretty prose-slate lg:prose-base;
-  } */
+
 }
