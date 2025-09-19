@@ -30,44 +30,54 @@
   >
 </label>
 
-<script is:inline>
-  const themeToggle = document.getElementById("theme-toggle");
-
-  function setTheme(theme) {
+<script>
+  /**
+   * 设置并应用主题。
+   * @param {'light' | 'dark' | 'system'} theme - 要应用的主题。
+   */
+  function setTheme(theme: string) {
     let themeToApply = theme;
+    // 如果是 system，则根据系统偏好设置
     if (theme === "system") {
       themeToApply = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
     }
 
+    // 设置 data-theme 属性以应用样式
     document.documentElement.setAttribute("data-theme", themeToApply);
-    localStorage.setItem("theme", theme); // 保存用户选择，可以是 'light', 'dark', 'system'
+    // 保存用户的选择 (light, dark, or system)
+    localStorage.setItem("theme", theme);
 
-    // 同步 checkbox 状态
+    // 同步 checkbox 的状态
+    const themeToggle = document.getElementById(
+      "theme-toggle",
+    ) as HTMLInputElement;
     if (themeToggle) {
       themeToggle.checked = themeToApply === "dark";
     }
   }
 
-  // 页面加载时应用主题
-  function applyInitialTheme() {
+  /**
+   * 初始化主题切换器功能。
+   * 这包括从 localStorage 加载主题并为按钮添加事件监听器。
+   */
+  function initializeThemeToggle() {
     const savedTheme = localStorage.getItem("theme") || "system";
-    console.log("Applying saved theme:", savedTheme);
     setTheme(savedTheme);
+
+    const themeToggle = document.getElementById("theme-toggle");
+    if (themeToggle) {
+      themeToggle.addEventListener("change", (event) => {
+        const isChecked = (event.currentTarget as HTMLInputElement).checked;
+        setTheme(isChecked ? "dark" : "light");
+      });
+    }
   }
 
-  document.addEventListener("astro:after-swap", applyInitialTheme);
+  // 首次加载时初始化
+  initializeThemeToggle();
 
-  applyInitialTheme();
-
-  // 监听点击事件
-  themeToggle.addEventListener("change", (event) => {
-    const isChecked = event.currentTarget.checked;
-    if (isChecked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  });
+  // 在 Astro 视图转换后重新初始化
+  document.addEventListener("astro:after-swap", initializeThemeToggle);
 </script>
