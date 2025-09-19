@@ -29,7 +29,8 @@ async function main() {
     tasks.push(
       limit(() =>
         runTasks(fullPath).catch((error) => {
-          throw error(`❌ 处理文件 ${fullPath} 时出现错误:`, error);
+          console.log(`❌ 处理文件 ${fullPath} 时出现错误:`);
+          throw error;
         }),
       ),
     );

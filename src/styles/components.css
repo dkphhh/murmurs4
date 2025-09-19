@@ -1,14 +1,14 @@
 @layer components {
   .navigation-item {
-    @apply btn flex items-center justify-center btn-ghost;
+    @apply btn btn-ghost flex items-center justify-center;
   }
 
   .navigation-text {
-    @apply text-sm font-normal text-nowrap;
+    @apply text-nowrap text-sm font-normal;
   }
 
   .navigation-text-button {
-    @apply btn text-sm font-normal text-nowrap btn-ghost;
+    @apply btn btn-ghost text-nowrap text-sm font-normal;
   }
 
   .icon-style {
@@ -19,16 +19,14 @@
     @apply h-6 w-6 fill-none stroke-current stroke-[1.5px];
   }
   .article-list-container {
-    @apply flex h-full max-w-100 flex-col items-center justify-center space-y-2 overflow-auto rounded-2xl bg-base-100 py-4 shadow-2xl md:max-w-160 lg:max-w-180;
+    @apply max-w-100 bg-base-100 md:max-w-160 lg:max-w-180 flex h-full flex-col items-center justify-center space-y-2 overflow-auto rounded-2xl py-4 shadow-2xl;
   }
 
   .article-container {
-    @apply flex min-h-120 w-5/6 flex-col items-center justify-center rounded-4xl bg-base-100 px-2 py-12 shadow-2xl lg:w-2/3 lg:p-16;
+    @apply min-h-120 w-9/10 rounded-4xl bg-base-100 flex flex-col items-center justify-center px-8 py-12 shadow-2xl lg:w-1/2 lg:p-16;
   }
 
   .article-render {
-    @apply prose prose-sm p-1 text-justify tracking-wide text-pretty prose-slate lg:prose-base;
+    @apply prose prose-sm prose-slate lg:prose-base w-full text-pretty p-1 text-justify tracking-wide;
   }
-
-
 }

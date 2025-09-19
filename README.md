@@ -10,7 +10,8 @@ Tech stack：Astro + Svelte + TailwindCSS + DaisyUI
 
 ## TODO
 
-TODO: 解决 middleware 失效的问题
+TODO: 解决 prefetch 的问题。当前的做法会 fetch 两次。
+https://discord.com/channels/830184174198718474/1019713903481081876/threads/1418474936384884816
 
 ### TODO - 2.0
 

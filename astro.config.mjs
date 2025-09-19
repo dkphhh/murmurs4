@@ -15,9 +15,7 @@ export default defineConfig({
       destination: "/lifelog/about-me",
     },
   },
-  prefetch: {
-    prefetchAll: true,
-  },
+
   env: {
     schema: {
       OPEN_ROUTER_API_KEY: envField.string({

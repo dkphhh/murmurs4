@@ -1,0 +1,73 @@
+<label
+  class="navigation-item swap swap-rotate lg:absolute lg:bottom-8"
+  aria-label="亮/暗色模式切换"
+  title="亮/暗色模式"
+>
+  <!-- this hidden checkbox controls the state -->
+  <input id="theme-toggle" type="checkbox" class="theme-controller" />
+
+  <!-- sun icon -->
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    class="lucide lucide-sun-icon lucide-sun swap-off icon-style h-7 w-7 lg:h-9 lg:w-9"
+    ><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path
+      d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path
+      d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path
+      d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path
+      d="m19.07 4.93-1.41 1.41"></path></svg
+  >
+
+  <!-- moon icon -->
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    class="lucide lucide-moon-icon lucide-moon icon-style swap-on"
+    ><path
+      d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+    ></path></svg
+  >
+</label>
+
+<script is:inline>
+  const themeToggle = document.getElementById("theme-toggle");
+
+  function setTheme(theme) {
+    let themeToApply = theme;
+    if (theme === "system") {
+      themeToApply = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+
+    document.documentElement.setAttribute("data-theme", themeToApply);
+    localStorage.setItem("theme", theme); // 保存用户选择，可以是 'light', 'dark', 'system'
+
+    // 同步 checkbox 状态
+    if (themeToggle) {
+      themeToggle.checked = themeToApply === "dark";
+    }
+  }
+
+  // 页面加载时应用主题
+  function applyInitialTheme() {
+    const savedTheme = localStorage.getItem("theme") || "system";
+    console.log("Applying saved theme:", savedTheme);
+    setTheme(savedTheme);
+  }
+
+  document.addEventListener("astro:after-swap", applyInitialTheme);
+
+  applyInitialTheme();
+
+  // 监听点击事件
+  themeToggle.addEventListener("change", (event) => {
+    const isChecked = event.currentTarget.checked;
+    if (isChecked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  });
+</script>
