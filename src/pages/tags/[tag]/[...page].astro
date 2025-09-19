@@ -19,13 +19,15 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const allTags = [
     ...new Set(
       allPosts
-        .map((post) => (post.data.tags || []).map((t) => t.trim().toLowerCase()))
+        .map((post) =>
+          (post.data.tags || []).map((t) => t.trim().toLowerCase()),
+        )
         .flat(),
     ),
   ];
   return allTags.flatMap((tag) => {
     const filteredPosts = allPosts.filter((post) =>
-      post.data.tags?.includes(tag),
+      post.data.tags?.map((tag)=>tag.toLowerCase()).includes(tag),
     );
     return paginate(filteredPosts, {
       params: { tag },
