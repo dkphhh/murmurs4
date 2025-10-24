@@ -9,6 +9,10 @@ import { defineConfig, envField } from "astro/config";
 export default defineConfig({
   site: "https://dkphhh.me",
 
+  // prefetch: {
+  //   prefetchAll: true,
+  // },
+
   redirects: {
     "/about": {
       status: 301,

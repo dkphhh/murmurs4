@@ -1,8 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 
-const pathname = Astro.url.pathname;
-
 const writingPosts = await getCollection("writing");
 const readingPosts = await getCollection("reading");
 
@@ -30,15 +28,23 @@ const tags = [...new Set(allPosts.map((post) => post.data.tags || []).flat())]
       </li>
     ))
   }
-  {
-    pathname === "/tags" ? (
-      ""
-    ) : (
-      <li>
-        <a class="" href="/tags">
-          所有标签…
-        </a>
-      </li>
-    )
-  }
+  <li id="all-tags-link">
+    <a href="/tags"> 所有标签… </a>
+  </li>
 </ul>
+
+<script>
+  // 这个脚本会在客户端运行
+  // 它会检查当前页面的路径是否是 /tags
+  // 如果是，就隐藏“所有标签”这个链接
+  function hiddenAllTagsLink() {
+    const allTagsLink = document.getElementById("all-tags-link");
+    if (allTagsLink) {
+      allTagsLink.hidden = true;
+    }
+  }
+
+  hiddenAllTagsLink();
+
+  document.addEventListener("astro:after-swap", hiddenAllTagsLink);
+</script>

@@ -3,29 +3,33 @@
 ---
 
 <div
-  class="dropdown dropdown-center dropdown-top lg:dropdown-right lg:dropdown-end"
+    class="dropdown dropdown-center dropdown-top lg:dropdown-right lg:dropdown-end"
 >
-  <button tabindex="0" class="navigation-item" title="其他页面">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      class="lucide lucide-ellipsis-icon lucide-ellipsis icon-style hidden fill-current lg:block"
-      ><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"
-      ></circle><circle cx="5" cy="12" r="1"></circle></svg
+    <button tabindex="0" class="navigation-item" title="其他页面">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="lucide lucide-ellipsis-icon lucide-ellipsis icon-style hidden fill-current lg:block"
+            ><circle cx="12" cy="12" r="1"></circle><circle
+                cx="19"
+                cy="12"
+                r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg
+        >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical icon-style lg:hidden"
+            ><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"
+            ></circle><circle cx="12" cy="19" r="1"></circle></svg
+        >
+    </button>
+    <div
+        tabindex="0"
+        class="dropdown-content menu z-30 items-start rounded-box bg-base-100 p-2 shadow-xl"
     >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical icon-style lg:hidden"
-      ><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"
-      ></circle><circle cx="12" cy="19" r="1"></circle></svg
-    >
-  </button>
-  <div
-    tabindex="0"
-    class="dropdown-content menu z-30 items-start rounded-box bg-base-200 p-2 shadow-sm"
-  >
-    <a href="/about" class="navigation-text-button" title="关于我">About Me</a>
-    <a href="/tags" class="navigation-text-button" title="内容标签">Tags</a>
-  </div>
+        <a href="/about" class="navigation-text-button" title="关于我"
+            >About Me</a
+        >
+        <a href="/tags" class="navigation-text-button" title="内容标签">Tags</a>
+    </div>
 </div>

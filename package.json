@@ -7,18 +7,19 @@
     "dev": "bunx --bun astro dev",
     "prebuild": "bun content-management/index.ts",
     "build": "bunx --bun astro build && cp -r dist/pagefind public/ ",
-    "preview": "bunx --bun astro preview",
-    "deploy": "bunx wrangler deploy",
+    "preview": "wrangler dev",
+    "deploy": "bun run content-management/index.ts && bunx --bun astro build && wrangler deploy",
     "astro": "bunx --bun astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.8",
-    "@astrojs/rss": "^4.0.12",
+    "@astrojs/cloudflare": "12.6.10",
+    "@astrojs/rss": "4.0.13",
     "@astrojs/sitemap": "3.6.0",
-    "@astrojs/svelte": "7.1.1",
-    "astro": "5.13.8",
+    "@astrojs/svelte": "7.2.0",
+    "astro": "5.15.1",
     "svelte": "^5.38.10",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "wrangler": "^4.42.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
@@ -48,8 +49,7 @@
     "strip-markdown": "^6.0.0",
     "tailwindcss": "^4.1.13",
     "typescript-eslint": "^8.44.0",
-    "unified": "^11.0.5",
-    "wrangler": "^4.38.0"
+    "unified": "^11.0.5"
   },
   "prettier": {
     "plugins": [
