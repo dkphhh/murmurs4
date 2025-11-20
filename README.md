@@ -1,12 +1,12 @@
 # Murmurs
 
-Murmurs,是我的个人微博，也可以理解成是一个公开的日记本。你可以前往 [dkphhh.me](https://dkphhh.me/)翻阅。也使我学习编程的试验场。
+Murmurs，是我的个人微博，也可以理解成是一个公开的日记本。你可以前往 [dkphhh.me](https://dkphhh.me/)翻阅。也使我学习编程的试验场。
 
-这是 Murmurs 的第 4 版,使用的开发框架是 Astro。
+这是 Murmurs 的第 4 版，使用的开发框架是 Astro。
 
 ## 技术说明
 
-Tech stack：Astro + Svelte + TailwindCSS + DaisyUI
+Tech stack: Astro + Svelte + TailwindCSS + DaisyUI
 
 ## TODO
 

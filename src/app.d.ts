@@ -24,7 +24,7 @@ declare global {
   type PostFrontmatter = OriginalPostMeta | ClippingPostMeta | LifeLogPageMeta;
 
   /**
-   * 代表一个完整的博客文章条目,用于文章列表的展示项。
+   * 代表一个完整的博客文章条目，用于文章列表的展示项。
    *
    */
   type PostEntry =

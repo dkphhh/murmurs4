@@ -42,7 +42,7 @@ async function reWriteUUID(data: PostFrontmatter) {
 
   if (typeof uuid === "number") {
     console.log(`检测到 UUID => ${uuid} 为数字，正在重新生成...`);
-    // 重新生成 UUID，保留前14位数字，后4位改为随机字母
+    // 重新生成 UUID，保留前 14 位数字，后 4 位改为随机字母
     const newUUID =
       (uuid as number).toString().slice(0, 14) + generateRandomAlpha(4);
     console.log(`旧 UUID: ${uuid}，新 UUID: ${newUUID}`);

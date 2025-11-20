@@ -23,7 +23,7 @@
   }
 
   .article-container {
-    @apply min-h-120 w-9/10 rounded-4xl bg-base-100 flex flex-col items-center justify-center px-8 py-12 shadow-2xl lg:w-1/2 lg:p-16;
+    @apply min-h-120 w-9/10 rounded-4xl bg-base-100 flex flex-col items-center justify-center px-4 py-12 shadow-2xl lg:w-1/2 lg:p-16 lg:px-8;
   }
 
   .article-render {

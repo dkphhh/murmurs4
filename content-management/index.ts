@@ -6,8 +6,7 @@ import path from "path";
 // ------------ 脚本配置 --------------
 
 // 目标目录
-const TARGET_DIR =
-  "/Users/dkphhh/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/docs/murmurs";
+const TARGET_DIR = Bun.env.MURMURS_PATH;
 
 // 处理的文件，这里处理目录内所有的 markdown 文件
 const glob = new Bun.Glob("**/*.md");

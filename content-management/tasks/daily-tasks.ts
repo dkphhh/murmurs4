@@ -12,7 +12,7 @@ import { createTags } from "../utils/metadata-tools.ts";
 
 /**
  * 为文章添加描述字段，如果已存在则跳过。
- * 该函数将 Markdown 内容转换为纯文本，并截取前60个字符作为描述，
+ * 该函数将 Markdown 内容转换为纯文本，并截取前 60 个字符作为描述，
  * 优先在标点符号处截断，并添加省略号。
  *
  * @param data - 文章的前置元数据对象，类型为 PostFrontmatter。
@@ -24,9 +24,9 @@ async function addDescription(data: PostFrontmatter, content: string) {
   if (data.description) {
     return data;
   }
-  //   截取description内容
+  //   截取 description 内容
   const description = await convertMarkdownToText(content).then((text) => {
-    // 1. 先截取最多80个字符
+    // 1. 先截取最多 80 个字符
     const initialSlice = text.slice(0, 80);
 
     // 2. 找到最后一个标点符号的位置
@@ -48,7 +48,7 @@ async function addDescription(data: PostFrontmatter, content: string) {
       initialSlice.lastIndexOf(":"),
     );
 
-    // 3. 如果找到了标点，就截取到标点前；否则直接使用80个字符的截取
+    // 3. 如果找到了标点，就截取到标点前；否则直接使用 80 个字符的截取
     const finalSlice =
       lastPunctuationIndex > 0
         ? initialSlice.slice(0, lastPunctuationIndex)
@@ -82,20 +82,20 @@ export async function addTags(data: PostFrontmatter, content: string) {
   return updatedData;
 }
 
-// -------- 任务执行区域,开放给外部函数调用 -------
+// -------- 任务执行区域，开放给外部函数调用 -------
 
 export async function dailyTasksRunner(fullPath: string) {
-  console.log(`🔄 处理文件: ${fullPath}`);
+  console.log(`🔄 处理文件：${fullPath}`);
   const fileContent = await Bun.file(fullPath).text();
   const { data, content } =
     spiltFrontMatterAndContent<PostFrontmatter>(fileContent);
 
-  // 任务1: 添加 description 字段
+  // 任务 1: 添加 description 字段
   let updatedData = await addDescription(data, content);
 
-  // 任务2: 添加 tags 字段
+  // 任务 2: 添加 tags 字段
   updatedData = await addTags(updatedData, content);
 
   await writeToMarkdownFile(updatedData, content, fullPath);
-  console.log(`✅ 处理完成: ${fullPath}`);
+  console.log(`✅ 处理完成：${fullPath}`);
 }

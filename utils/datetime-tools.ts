@@ -11,14 +11,14 @@ export function convertDatetimeTextToIsoWithOffset(
   const m = input.match(
     /^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}:\d{2})(?:\.\d+)?$/,
   );
-  if (!m) throw new Error(`时间格式不符合预期: ${input}`);
+  if (!m) throw new Error(`时间格式不符合预期：${input}`);
   return `${m[1]}T${m[2]}${offset}`;
 }
 
 /**
  * 将给定的 Date 对象格式化为类似 ISO 的日期时间字符串（不含毫秒与时区信息）。
  *
- * 格式: "YYYY-MM-DD HH:mm:ss"（各字段会补零至固定宽度）。
+ * 格式："YYYY-MM-DD HH:mm:ss"（各字段会补零至固定宽度）。
  *
  * @param d - 要格式化的 Date 对象（使用本地时间的年、月、日、时、分、秒）。
  * @returns 格式化后的字符串，例如 "2025-09-03T14:05:09"。

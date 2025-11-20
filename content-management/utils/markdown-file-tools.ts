@@ -49,6 +49,6 @@ export async function writeToMarkdownFile(
     const newMarkdown = matter.stringify(content, frontMatter);
     await Bun.write(filePath, newMarkdown);
   } catch {
-    throw new Error(`写入文件失败: ${filePath}`);
+    throw new Error(`写入文件失败：${filePath}`);
   }
 }

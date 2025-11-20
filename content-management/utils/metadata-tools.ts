@@ -46,8 +46,8 @@ const TAGS: string[] = [
 ];
 
 /**
- * 根据文本内容，由AI自动生成 tags（在一个范围里让AI挑选tags）
- * 字数少于10的，不生成 tags
+ * 根据文本内容，由 AI 自动生成 tags（在一个范围里让 AI 挑选 tags）
+ * 字数少于 10 的，不生成 tags
  * @param {string} content:string 文本内容
  * @param {string} tagScope:string[]=TAGS 选择 tags 范围
  * @returns {Promise<string[]>} :Promise<string[]>
@@ -124,7 +124,7 @@ export async function createTags(
       if (areTagsValid) {
         return generatedTags.slice(0, 5); // 成功，返回结果
       } else {
-        // AI返回了无效内容，抛出错误触发重试
+        // AI 返回了无效内容，抛出错误触发重试
         throw new Error("生成的标签不合法或超出限制范围.");
       }
     } catch (error) {
