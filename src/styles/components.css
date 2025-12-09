@@ -1,14 +1,14 @@
 @layer components {
   .navigation-item {
-    @apply btn btn-ghost flex items-center justify-center;
+    @apply btn flex items-center justify-center btn-ghost;
   }
 
   .navigation-text {
-    @apply text-nowrap text-sm font-normal;
+    @apply text-sm font-normal text-nowrap;
   }
 
   .navigation-text-button {
-    @apply btn btn-ghost text-nowrap text-sm font-normal;
+    @apply btn text-sm font-normal text-nowrap btn-ghost;
   }
 
   .icon-style {
@@ -19,14 +19,14 @@
     @apply h-6 w-6 fill-none stroke-current stroke-[1.5px];
   }
   .article-list-container {
-    @apply max-w-100 bg-base-100 md:max-w-160 lg:max-w-180 flex h-full flex-col items-center justify-center space-y-2 overflow-auto rounded-2xl py-4 shadow-2xl;
+    @apply flex h-full max-w-100 flex-col items-center justify-center space-y-2 overflow-auto rounded-2xl bg-base-100 py-4 shadow-2xl md:max-w-160 lg:max-w-180;
   }
 
   .article-container {
-    @apply min-h-120 w-9/10 rounded-4xl bg-base-100 flex flex-col items-center justify-center px-4 py-12 shadow-2xl lg:w-1/2 lg:p-16 lg:px-8;
+    @apply flex min-h-120 w-9/10 flex-col items-center justify-center rounded-4xl bg-base-100 px-4 py-12 shadow-2xl lg:w-3/5 lg:p-16 lg:px-8;
   }
 
   .article-render {
-    @apply prose prose-sm prose-slate lg:prose-base w-full text-pretty p-1 text-justify tracking-wide;
+    @apply prose prose-sm mt-2 max-w-full! px-4 prose-slate lg:prose-base lg:px-8;
   }
 }

@@ -15,13 +15,19 @@ declare global {
    */
   type ClippingPostMeta = InferEntrySchema<"reading">;
 
+  type ToolPostMeta = InferEntrySchema<"tools">;
+
   /**
    * 文章的 frontmatter 元数据。
    *
    * 它可以是原创文章的元数据 (`OriginalPostMeta`)，
    * 也可以是剪藏文章的元数据 (`ClippingPostMeta`)。
    */
-  type PostFrontmatter = OriginalPostMeta | ClippingPostMeta | LifeLogPageMeta;
+  type PostFrontmatter =
+    | OriginalPostMeta
+    | ClippingPostMeta
+    | LifeLogPageMeta
+    | ToolPostMeta;
 
   /**
    * 代表一个完整的博客文章条目，用于文章列表的展示项。
@@ -30,7 +36,8 @@ declare global {
   type PostEntry =
     | CollectionEntry<"writing">
     | CollectionEntry<"reading">
-    | CollectionEntry<"lifelog">;
+    | CollectionEntry<"lifelog">
+    | CollectionEntry<"tools">;
 
   /**
    * 表示单个经过处理的 Markdown 文章实例。

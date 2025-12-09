@@ -7,21 +7,25 @@ type Props = {
   post: PostEntry;
 };
 
+const CATEGORY_URL_MAP = {
+  origin: "writing",
+  clipping: "reading",
+  lifelog: "lifelog",
+  tools: "tools",
+};
+
+
 const { post } = Astro.props as Props;
 
-const url =
-  post.data.category === "origin"
-    ? `/writing/${post.id}`
-    : post.data.category === "clipping"
-      ? `/reading/${post.id}`
-      : `/lifelog/${post.id}`;
+const url = `/${CATEGORY_URL_MAP[post.data.category]}/${ post.id}`;
+
 const { title } = post.data;
 
 const { Content } = await render(post);
 ---
 
 <div
-  class="w-full max-w-full border-b-1 border-b-base-content/5 last:border-b-0"
+  class="w-full max-w-full border-b border-b-base-content/5 last:border-b-0"
 >
   <div class="card relative">
     <div class="card-body cursor-pointer py-8 lg:px-12">

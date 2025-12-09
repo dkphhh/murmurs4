@@ -5,6 +5,7 @@ import { z, defineCollection } from "astro:content";
 // 导入环境变量
 import { MURMURS_PATH } from "astro:env/server";
 
+
 // 为每个集合定义一个 `loader` 和 `schema`
 const writing = defineCollection({
   loader: glob({
@@ -72,7 +73,32 @@ const lifelog = defineCollection({
     base: `${MURMURS_PATH}/lifelog`,
   }),
   schema: z.object({
-    category: z.literal("pages"),
+    category: z.literal("lifelog"),
+    title: z.string(),
+    created: z
+      .string()
+      .datetime({ offset: true })
+      .transform((s) => new Date(s)),
+    updated: z
+      .string()
+      .datetime({ offset: true })
+      .transform((s) => new Date(s)),
+    public: z.boolean(),
+    author: z.string(),
+    description: z.string(),
+    tags: z.union([z.array(z.string()), z.null()]).optional(),
+    uuid: z.string(),
+    alias: z.union([z.string(), z.array(z.string()), z.null()]).optional(),
+  }),
+});
+
+const tools = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: `${MURMURS_PATH}/tools`,
+  }),
+  schema: z.object({
+    category: z.literal("tools"),
     title: z.string(),
     created: z
       .string()
@@ -92,4 +118,4 @@ const lifelog = defineCollection({
 });
 
 // 导出一个单独的 `collections` 对象用以注册集合
-export const collections = { writing, reading, lifelog };
+export const collections = { writing, reading, lifelog, tools };

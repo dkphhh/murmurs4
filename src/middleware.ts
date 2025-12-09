@@ -24,7 +24,7 @@ const redirectDuplicateCategory: MiddlewareHandler = async (
 ) => {
   const { pathname } = url;
 
-  const categories = ["reading", "writing", "lifelog"];
+  const categories = ["reading", "writing", "lifelog", "tools"];
 
   // 将路径分割成数组，并过滤掉空字符串，例如 "/writing/reading/slug" -> ["writing", "reading", "slug"]
   const pathSegments = pathname.split("/").filter(Boolean);
