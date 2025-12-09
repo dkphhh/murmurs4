@@ -8,10 +8,6 @@ Murmurs，是我的个人微博，也可以理解成是一个公开的日记本�
 
 Tech stack: Astro + Svelte + TailwindCSS + DaisyUI
 
-## TODO
-
-TODO: 解决 prefetch 的问题。当前的做法会 fetch 两次。
-https://discord.com/channels/830184174198718474/1019713903481081876/threads/1418474936384884816
 
 ### TODO - 2.0
 
