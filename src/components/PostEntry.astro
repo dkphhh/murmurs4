@@ -14,19 +14,28 @@ const CATEGORY_URL_MAP = {
   tools: "tools",
 };
 
-
 const { post } = Astro.props as Props;
 
-const url = `/${CATEGORY_URL_MAP[post.data.category]}/${ post.id}`;
+const url = `/${CATEGORY_URL_MAP[post.data.category]}/${post.id}`;
 
 const { title } = post.data;
 
 const { Content } = await render(post);
+
+const getDatetimeInfo = () => {
+  if (post.data.category === "clipping") {
+    if (post.data.published) {
+      return { label: "Published@ ", date: post.data.published };
+    }
+    return { label: "Saved@ ", date: post.data.saved };
+  }
+  return { label: "Created@ ", date: post.data.created };
+};
+
+const { label, date } = getDatetimeInfo();
 ---
 
-<div
-  class="w-full max-w-full border-b border-b-base-content/5 last:border-b-0"
->
+<div class="w-full max-w-full border-b border-b-base-content/5 last:border-b-0">
   <div class="card relative">
     <div class="card-body cursor-pointer py-8 lg:px-12">
       <div class="block pb-4">
@@ -34,7 +43,9 @@ const { Content } = await render(post);
         <PostDatetime frontmatter={post.data} />
       </div>
       {
-        isThisDateTime(title) ? null : (
+        isThisDateTime(title) ? (
+          <h2 hidden>{`Dkphhh's Murmur` + label + date}</h2>
+        ) : (
           <h2 class="card-title text-pretty">{title}</h2>
         )
       }

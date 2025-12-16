@@ -10,6 +10,10 @@ interface Props {
 }
 
 const { title, description, keywords } = Astro.props as Props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const metaDescription =
+  (description || "") +
+  "Dkphhh的个人网站，是日记本，是收藏夹，也是笔记本和闲言碎语集子。";
 ---
 
 <!doctype html>
@@ -18,7 +22,9 @@ const { title, description, keywords } = Astro.props as Props;
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V30WGCKEP5"
     ></script>
-    <script>
+
+    <script is:inline>
+      /* eslint-disable */
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -30,6 +36,7 @@ const { title, description, keywords } = Astro.props as Props;
     <meta charset="UTF-8" />
     <meta content="width=device-width" name="viewport" />
     <link href="/favicon.ico" rel="icon" type="image/ico" />
+    <link rel="canonical" href={canonicalURL} />
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -39,15 +46,26 @@ const { title, description, keywords } = Astro.props as Props;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta content={Astro.generator} name="generator" />
     <title>{title} | Dkphhh's Murmurs</title>
-    <meta
-      name="description"
-      content={(description || "") +
-        "Dkphhh的个人网站，是日记本，是收藏夹，也是笔记本和闲言碎语集子。Murmurs is Dkphhh's personal website: a diary, a bookmark collection, a notebook, and a miscellany of musings."}
-    />
+    <meta name="description" content={metaDescription} />
     <meta
       name="keywords"
       content={(keywords?.join(", ") || "") + "Dkphhh, Murmurs, 博客, 微博"}
     />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={Astro.site + "favicon.webp"} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:site" content="@dkphhhhd" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={metaDescription} />
+    <meta property="twitter:image" content={Astro.site + "favicon.webp"} />
     <ClientRouter />
   </head>
   <body

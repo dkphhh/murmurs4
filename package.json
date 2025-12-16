@@ -6,9 +6,9 @@
     "predev": "bun content-management/index.ts",
     "dev": "bunx --bun astro dev",
     "prebuild": "bun content-management/index.ts",
-    "build": "bunx --bun astro build && cp -r dist/pagefind public/ ",
+    "build": "bun run lint && bunx --bun astro build && cp -r dist/pagefind public/ ",
     "preview": "wrangler dev",
-    "deploy": "bun run content-management/index.ts && bunx --bun astro build && wrangler deploy",
+    "deploy": "bun run content-management/index.ts && bun run build && wrangler deploy",
     "astro": "bunx --bun astro",
     "lint": "bun autocorrect --fix ./ "
   },

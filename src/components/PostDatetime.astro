@@ -6,18 +6,21 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props as Props;
+
+const getDatetimeInfo = () => {
+  if (frontmatter.category === "clipping") {
+    if (frontmatter.published) {
+      return { label: "Published@ ", date: frontmatter.published };
+    }
+    return { label: "Saved@ ", date: frontmatter.saved };
+  }
+  return { label: "Created@ ", date: frontmatter.created };
+};
+
+const { label, date } = getDatetimeInfo();
 ---
 
 <span class="text-sm">
-  {
-    frontmatter.category === "clipping" && frontmatter.published ? (<span>Published@ </span>
-      <time>{formatDatetimeToText(frontmatter.published)}</time>
-    ) : frontmatter.category === "clipping" ? (
-    <span>Saved@ </span>
-    <time>{formatDatetimeToText(frontmatter.saved)}</time>
-    ) : (
-      <span>Created@ </span>
-      <time>{formatDatetimeToText(frontmatter.created)}</time>
-    )
-  }
+  <span>{label}</span>
+  <time>{formatDatetimeToText(date)}</time>
 </span>

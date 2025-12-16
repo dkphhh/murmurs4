@@ -10,11 +10,12 @@ const posts = writingPosts.slice(0, 10);
 ---
 
 <BaseLayout
-  title="Murmurs from Dkphhh | 微博客"
-  description="一些闲言碎语和生活记录，来自 Dkphhh。"
+  title="Dkphhh的闲言碎语"
+  description="一些闲言碎语和生活记录，From Dkphhh with Love ❤️。"
   keywords={["murmurs", "dkphhh", "博客", "文章", "故事"]}
 >
   <div class="flex-col-center h-full gap-8" data-pagefind-ignore="all">
+    <h1 hidden>Dkphhh's Murmurs</h1>
     <div class="article-list-container">
       {posts.map((post) => <PostEntry post={post} />)}
       <div class="flex-center w-full pt-2 pb-4">
