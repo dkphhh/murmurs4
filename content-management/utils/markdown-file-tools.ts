@@ -1,3 +1,4 @@
+import { writeFile } from "node:fs/promises";
 import matter from "gray-matter";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
@@ -47,7 +48,7 @@ export async function writeToMarkdownFile(
 ): Promise<void> {
   try {
     const newMarkdown = matter.stringify(content, frontMatter);
-    await Bun.write(filePath, newMarkdown);
+    await writeFile(filePath, newMarkdown);
   } catch {
     throw new Error(`写入文件失败：${filePath}`);
   }

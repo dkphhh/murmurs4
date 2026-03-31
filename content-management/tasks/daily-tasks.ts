@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import {
   spiltFrontMatterAndContent,
   editFrontMatterField,
@@ -86,7 +87,7 @@ export async function addTags(data: PostFrontmatter, content: string) {
 
 export async function dailyTasksRunner(fullPath: string) {
   console.log(`🔄 处理文件：${fullPath}`);
-  const fileContent = await Bun.file(fullPath).text();
+  const fileContent = await readFile(fullPath, "utf-8");
   const { data, content } =
     spiltFrontMatterAndContent<PostFrontmatter>(fileContent);
 

@@ -1,15 +1,15 @@
 import { dailyTasksRunner } from "./tasks/daily-tasks.ts";
+import { readdir } from "node:fs/promises";
 import pLimit from "p-limit";
 // import { oneTimeTasks } from "./tasks/one-time.ts";
 import path from "path";
-
+import { loadEnvFile } from "node:process";
 // ------------ 脚本配置 --------------
 
-// 目标目录
-const TARGET_DIR = Bun.env.MURMURS_PATH;
 
-// 处理的文件，这里处理目录内所有的 markdown 文件
-const glob = new Bun.Glob("**/*.md");
+loadEnvFile(".env");
+// 目标目录
+const TARGET_DIR = process.env.MURMURS_PATH;
 
 // ------------ 任务配置 --------------
 
@@ -20,10 +20,16 @@ async function runTasks(filepath: string) {
 
 // -------- 任务执行区域 -------
 async function main() {
-  const filePaths = glob.scan(TARGET_DIR);
+  if (!TARGET_DIR) {
+    throw new Error("环境变量 MURMURS_PATH 未设置");
+  }
+  const allFiles = await readdir(TARGET_DIR, { recursive: true });
+  const filePaths = allFiles.filter(
+    (f) => typeof f === "string" && f.endsWith(".md"),
+  );
   const limit = pLimit(100); // 限制并发数为 100，避免过多请求
   const tasks: Promise<void>[] = [];
-  for await (const filePath of filePaths) {
+  for (const filePath of filePaths) {
     const fullPath = path.join(TARGET_DIR, filePath);
     tasks.push(
       limit(() =>

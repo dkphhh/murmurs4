@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import { editFrontMatterField } from "../utils/edit-frontmatter.ts";
 import { spiltFrontMatterAndContent } from "../utils/edit-frontmatter.ts";
 import { writeToMarkdownFile } from "../utils/markdown-file-tools.ts";
@@ -56,7 +57,7 @@ async function reWriteUUID(data: PostFrontmatter) {
 }
 
 export async function oneTimeTasks(fullPath: string) {
-  const fileContent = await Bun.file(fullPath).text();
+  const fileContent = await readFile(fullPath, "utf-8");
   const { data, content } =
     spiltFrontMatterAndContent<PostFrontmatter>(fileContent);
 

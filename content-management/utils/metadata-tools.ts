@@ -1,4 +1,7 @@
-const OPEN_ROUTER_API_KEY = Bun.env.OPEN_ROUTER_API_KEY;
+import { loadEnvFile } from "node:process";
+
+loadEnvFile(".env");
+const OPEN_ROUTER_API_KEY = process.env.OPEN_ROUTER_API_KEY;
 
 /**
  * 预设的 tag

@@ -3,54 +3,55 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "predev": "bun content-management/index.ts",
-    "dev": "bunx --bun astro dev",
-    "prebuild": "bun content-management/index.ts",
-    "build": "bun run lint && bunx --bun astro build && cp -r dist/pagefind public/ ",
-    "preview": "wrangler dev",
-    "deploy": "bun run content-management/index.ts && bun run build && wrangler deploy",
-    "astro": "bunx --bun astro",
-    "lint": "bun autocorrect --fix ./ "
+    "predev": "node content-management/index.ts",
+    "dev": "astro dev",
+    "prebuild": "node content-management/index.ts",
+    "build": "pnpm lint && astro build && cp -r dist/client/pagefind public/",
+    "preview": "astro preview",
+    "deploy": "node content-management/index.ts && pnpm run build && wrangler deploy",
+    "astro": "astro",
+    "lint": "pnpm autocorrect --fix ./ "
   },
+
+
   "dependencies": {
-    "@astrojs/cloudflare": "12.6.12",
-    "@astrojs/rss": "4.0.14",
-    "@astrojs/sitemap": "3.6.0",
-    "@astrojs/svelte": "7.2.2",
-    "astro": "5.16.4",
-    "svelte": "^5.43.13",
+    "@astrojs/cloudflare": "13.1.6",
+    "@astrojs/rss": "4.0.18",
+    "@astrojs/sitemap": "3.7.2",
+    "@astrojs/svelte": "8.0.4",
+    "astro": "6.1.2",
+    "svelte": "^5.53.12",
     "typescript": "^5.9.3",
-    "wrangler": "^4.53.0"
+    "wrangler": "^4.73.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.1.17",
+    "@tailwindcss/vite": "^4.2.1",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@types/bun": "^1.3.2",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^24.10.1",
-    "@typescript-eslint/parser": "^8.47.0",
+    "@types/node": "^24.12.0",
+    "@typescript-eslint/parser": "^8.57.0",
     "astro-pagefind": "^1.8.5",
     "autocorrect-node": "^2.14.0",
-    "daisyui": "^5.5.5",
-    "dayjs": "^1.11.19",
-    "eslint": "^9.39.1",
+    "daisyui": "^5.5.19",
+    "dayjs": "^1.11.20",
+    "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-astro": "^1.5.0",
-    "eslint-plugin-svelte": "^3.13.0",
-    "fs-extra": "^11.3.2",
+    "eslint-plugin-astro": "^1.6.0",
+    "eslint-plugin-svelte": "^3.15.2",
+    "fs-extra": "^11.3.4",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.1",
-    "p-limit": "^7.2.0",
-    "prettier": "^3.6.2",
+    "p-limit": "^7.3.0",
+    "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-svelte": "^3.4.0",
+    "prettier-plugin-svelte": "^3.5.1",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "remark-parse": "^11.0.0",
     "remark-stringify": "^11.0.0",
     "strip-markdown": "^6.0.0",
-    "tailwindcss": "^4.1.17",
-    "typescript-eslint": "^8.47.0",
+    "tailwindcss": "^4.2.1",
+    "typescript-eslint": "^8.57.0",
     "unified": "^11.0.5"
   },
   "prettier": {
@@ -77,5 +78,6 @@
       }
     ],
     "tailwindStylesheet": "./src/styles/global.css"
-  }
+  },
+  "packageManager": "pnpm@10.33.0"
 }

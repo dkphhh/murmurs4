@@ -10,7 +10,7 @@
   "compilerOptions": {
     "types": [
       "astro/client",
-      "bun",
+      "node",
       "@cloudflare/workers-types"
     ]
   }
